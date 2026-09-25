@@ -1,0 +1,120 @@
+@import "tailwindcss";
+@import "@fontsource-variable/plus-jakarta-sans";
+@import "@fontsource/noto-sans-jp/400.css";
+@import "@fontsource/noto-sans-jp/500.css";
+@import "@fontsource/noto-sans-jp/700.css";
+@import "@fontsource/noto-serif-jp/600.css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Palet "washi & shu": kertas hangat + aksen merah vermilion */
+:root {
+  --bg: #f6f3ec;
+  --surface: #ffffff;
+  --surface-2: #f0ece3;
+  --ink: #1d1b18;
+  --muted: #6d685f;
+  --line: #e3ddd0;
+  --accent: #cf4a2e;
+  --accent-ink: #ffffff;
+  --accent-soft: #fbe8e2;
+  --success: #2c7a57;
+  --success-soft: #e2f1e9;
+  --danger: #c0392f;
+  --danger-soft: #fbe4e1;
+  --gold: #a87a2c;
+  --shadow: 0 1px 2px rgb(40 30 10 / 0.05), 0 8px 24px -12px rgb(40 30 10 / 0.18);
+}
+
+.dark {
+  --bg: #0f0e0c;
+  --surface: #181714;
+  --surface-2: #211f1b;
+  --ink: #f1ede5;
+  --muted: #a39d92;
+  --line: #2f2c27;
+  --accent: #f06a4e;
+  --accent-ink: #1a0d09;
+  --accent-soft: rgb(240 106 78 / 0.14);
+  --success: #5cc497;
+  --success-soft: rgb(92 196 151 / 0.13);
+  --danger: #f27a6f;
+  --danger-soft: rgb(242 122 111 / 0.13);
+  --gold: #d9ac5c;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 12px 32px -16px rgb(0 0 0 / 0.7);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-gold: var(--gold);
+  --shadow-card: var(--shadow);
+  --font-sans: "Plus Jakarta Sans Variable", "Noto Sans JP", ui-sans-serif, system-ui, sans-serif;
+  --font-jp: "Noto Sans JP", "Plus Jakarta Sans Variable", sans-serif;
+  --font-serif-jp: "Noto Serif JP", "Noto Sans JP", serif;
+}
+
+html {
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background:
+    radial-gradient(1200px 600px at 85% -10%, var(--accent-soft), transparent 60%),
+    var(--bg);
+  background-attachment: fixed;
+  min-height: 100dvh;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+/* Garis bawah soal (@@kata@@) */
+.u-target {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+  text-decoration-color: var(--accent);
+  font-weight: 600;
+}
+
+.grain {
+  background-image: radial-gradient(var(--line) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: var(--line) transparent;
+  }
+}
+
+/* Konten soal tidak ikut tercetak / tersimpan sebagai PDF */
+@media print {
+  .protected,
+  img {
+    display: none !important;
+  }
+  body::after {
+    content: "Konten dilindungi lisensi.";
+    display: block;
+    padding: 2rem;
+  }
+}
